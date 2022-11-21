@@ -4,4 +4,6 @@ module ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers {
 
   opens ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers to javafx.fxml;
   exports ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers;
+  exports ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.controllers;
+  opens ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.controllers to javafx.fxml;
 }
