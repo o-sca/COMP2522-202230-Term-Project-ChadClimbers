@@ -38,17 +38,6 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.dyn4j</groupId>
-            <artifactId>dyn4j</artifactId>
-            <version>4.2.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.tiledreader</groupId>
-            <artifactId>TiledReader</artifactId>
-            <version>1.1.0</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -72,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                ca.bcit.comp2522.termproject.comp2522202230termprojectchadarcade/ca.bcit.comp2522.termproject.comp2522202230termprojectchadarcade.HelloApplication
+                                ca.bcit.comp2522.termproject.comp2522202230termprojectchadarcade/ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.HelloApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

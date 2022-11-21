@@ -1,9 +1,7 @@
-module ca.bcit.comp2522.termproject.comp2522202230termprojectchadarcade {
+module ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers {
   requires javafx.controls;
   requires javafx.fxml;
-  requires org.dyn4j;
-  requires TiledReader;
 
-  opens ca.bcit.comp2522.termproject.comp2522202230termprojectchadarcade to javafx.fxml;
-  exports ca.bcit.comp2522.termproject.comp2522202230termprojectchadarcade;
+  opens ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers to javafx.fxml;
+  exports ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers;
 }
