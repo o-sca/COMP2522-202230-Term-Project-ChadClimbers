@@ -19,13 +19,14 @@ public class ChadClimbers extends Application {
    */
   @Override
   public void start(Stage stage) throws Exception {
-      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main.fxml"));
-      Scene scene = new Scene(fxmlLoader.load());
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Main.fxml"));
+    Scene scene = new Scene(fxmlLoader.load());
 
-      stage.setTitle("Chad Climbers");
-      stage.setResizable(false);
-      stage.setScene(scene);
-      stage.show();
+    stage.setTitle("Chad Climbers");
+    stage.setResizable(false);
+    stage.setScene(scene);
+
+    stage.show();
   }
 
   /**
