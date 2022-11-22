@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 
 /**
  * Select Stage Controller.
@@ -13,7 +12,6 @@ import javafx.scene.layout.AnchorPane;
  * @version 2022
  */
 public class SelectStage extends Controller {
-
   @FXML
   private ImageView stageImage;
   @FXML

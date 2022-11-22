@@ -13,10 +13,9 @@
          </font>
       </Label>
       <Button id="playerButton" fx:id="playerButton" layoutX="62.0" layoutY="100.0" mnemonicParsing="false" onAction="#playerButton" prefHeight="25.0" prefWidth="63.0" text="Player" />
-      <Button fx:id="shopButton" layoutX="64.0" layoutY="153.0" mnemonicParsing="false" onAction="#shopButton" prefHeight="25.0" prefWidth="63.0" text="Shop" />
-      <Button id="levelButton" fx:id="level" layoutX="64.0" layoutY="246.0" mnemonicParsing="false" onAction="#levelButton" prefHeight="26.0" prefWidth="63.0" text="Level" />
-      <Button id="Main" fx:id="Main" layoutX="64.0" layoutY="296.0" mnemonicParsing="false" onAction="#button" prefHeight="25.0" prefWidth="63.0" text="Go Back" />
-      <Button layoutX="64.0" layoutY="200.0" mnemonicParsing="false" onAction="#stageButton" prefHeight="25.0" prefWidth="63.0" text="Stage" />
+      <Button id="levelButton" fx:id="level" layoutX="62.0" layoutY="233.0" mnemonicParsing="false" onAction="#levelButton" prefHeight="26.0" prefWidth="63.0" text="Level" />
+      <Button id="Main" fx:id="Main" layoutX="62.0" layoutY="289.0" mnemonicParsing="false" onAction="#button" prefHeight="25.0" prefWidth="63.0" text="Go Back" />
+      <Button layoutX="62.0" layoutY="168.0" mnemonicParsing="false" onAction="#stageButton" prefHeight="25.0" prefWidth="63.0" text="Stage" />
       <AnchorPane fx:id="rootPane" layoutX="200.0" layoutY="100.0" prefHeight="226.0" prefWidth="380.0" style="-fx-border-color: black;" />
    </children>
 </AnchorPane>

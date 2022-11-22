@@ -7,26 +7,31 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.controllers.MainMenu">
    <children>
-      <Button id="Start" alignment="CENTER" layoutX="274.0" layoutY="189.0" mnemonicParsing="false" onAction="#button" text="START" textAlignment="CENTER">
+      <Button id="Shop" layoutX="252.0" layoutY="220.0" mnemonicParsing="false" onAction="#button" prefHeight="23.0" prefWidth="96.0" text="SHOP">
          <font>
             <Font name="Monospaced Bold" size="12.0" />
-         </font></Button>
+         </font>
+      </Button>
       <Label layoutX="152.0" layoutY="74.0" text="CHAD CLIMBERS" textAlignment="CENTER">
          <font>
             <Font name="Monospaced Bold" size="38.0" />
          </font>
       </Label>
-      <Button id="Options" layoutX="267.0" layoutY="260.0" mnemonicParsing="false" onAction="#button" text="OPTIONS">
+      <Button id="Start" alignment="CENTER" layoutX="253.0" layoutY="189.0" mnemonicParsing="false" onAction="#button" prefHeight="23.0" prefWidth="96.0" text="START" textAlignment="CENTER">
+         <font>
+            <Font name="Monospaced Bold" size="12.0" />
+         </font></Button>
+      <Button id="Options" layoutX="253.0" layoutY="281.0" mnemonicParsing="false" onAction="#button" prefHeight="23.0" prefWidth="96.0" text="OPTIONS">
          <font>
             <Font name="Monospaced Bold" size="12.0" />
          </font>
       </Button>
-      <Button id="Quit" layoutX="278.0" layoutY="295.0" mnemonicParsing="false" onAction="#quit" text="QUIT">
+      <Button id="Quit" layoutX="253.0" layoutY="317.0" mnemonicParsing="false" onAction="#quit" prefHeight="23.0" prefWidth="96.0" text="QUIT">
          <font>
             <Font name="Monospaced Bold" size="12.0" />
          </font>
       </Button>
-      <Button id="Leaderboard" layoutX="253.0" layoutY="226.0" mnemonicParsing="false" onAction="#button" text="LEADERBOARD">
+      <Button id="Leaderboard" layoutX="253.0" layoutY="249.0" mnemonicParsing="false" onAction="#button" text="LEADERBOARD">
          <font>
             <Font name="Monospaced Bold" size="12.0" />
          </font>

@@ -25,11 +25,6 @@ public class Start extends Controller {
     rootPane.getChildren().setAll(pane);
   }
 
-  public void shopButton(ActionEvent event) throws IOException {
-    AnchorPane pane = FXMLLoader.load(ChadClimbers.class.getResource("Shop.fxml"));
-    rootPane.getChildren().setAll(pane);
-  }
-
   public void stageButton(ActionEvent event) throws IOException {
     AnchorPane pane = FXMLLoader.load(ChadClimbers.class.getResource("SelectStage.fxml"));
     rootPane.getChildren().setAll(pane);

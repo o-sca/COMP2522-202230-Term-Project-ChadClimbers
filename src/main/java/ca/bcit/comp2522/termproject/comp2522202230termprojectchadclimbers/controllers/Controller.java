@@ -40,6 +40,6 @@ public abstract class Controller {
     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Scene scene = new Scene(fxmlLoader.load());
     stage.setScene(scene);
-    return stage;
+  return stage;
   }
 }
