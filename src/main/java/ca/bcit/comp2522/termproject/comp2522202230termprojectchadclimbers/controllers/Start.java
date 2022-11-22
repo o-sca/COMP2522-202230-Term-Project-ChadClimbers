@@ -27,4 +27,9 @@ public class Start extends Controller {
     AnchorPane pane = FXMLLoader.load(ChadClimbers.class.getResource("Shop.fxml"));
     rootPane.getChildren().setAll(pane);
   }
+
+  public void levelButton(ActionEvent event) throws IOException{
+    AnchorPane pane = FXMLLoader.load(ChadClimbers.class.getResource("Level.fxml"));
+    rootPane.getChildren().setAll(pane);
+  }
 }

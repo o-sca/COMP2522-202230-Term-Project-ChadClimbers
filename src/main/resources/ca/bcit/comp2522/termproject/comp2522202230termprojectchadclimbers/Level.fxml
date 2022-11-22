@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="levelPane" fx:id="levelPane" prefHeight="226.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.controllers.Start">
+    <children>
+        <Label layoutX="153.0" layoutY="25.0" text="Level">
+            <font>
+                <Font name="Monospaced Bold" size="30.0" />
+            </font>
+        </Label>
+      <Label layoutX="42.0" layoutY="68.0" text="Choose difficultly ">
+         <font>
+            <Font name="Monospaced Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="165.0" layoutY="104.0" text="Easy">
+         <font>
+            <Font name="Monospaced Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="159.0" layoutY="137.0" text="Medium">
+         <font>
+            <Font name="Monospaced Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="166.0" layoutY="171.0" text="Hard">
+         <font>
+            <Font name="Monospaced Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="169.0" layoutY="199.0" text="Oni">
+         <font>
+            <Font name="Monospaced Bold" size="30.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>
