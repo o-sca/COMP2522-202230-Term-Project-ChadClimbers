@@ -5,6 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -27,4 +29,10 @@ public class Start extends Controller {
     AnchorPane pane = FXMLLoader.load(ChadClimbers.class.getResource("Shop.fxml"));
     rootPane.getChildren().setAll(pane);
   }
+
+  public void stageButton(ActionEvent event) throws IOException {
+    AnchorPane pane = FXMLLoader.load(ChadClimbers.class.getResource("SelectStage.fxml"));
+    rootPane.getChildren().setAll(pane);
+  }
+
 }

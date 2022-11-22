@@ -1,6 +1,11 @@
 package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.controllers;
 
-import javafx.event.ActionEvent;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.ChadClimbers;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * Select Stage Controller.
@@ -8,19 +13,35 @@ import javafx.event.ActionEvent;
  * @version 2022
  */
 public class SelectStage extends Controller {
-  public void cityButton(ActionEvent event) {
 
+  @FXML
+  private ImageView stageImage;
+  @FXML
+  private Label stageTitle;
+  public int currentStage = 1;
+  private final int maxStage = 3;
+  public void setPrevButton() {
+    if (currentStage - 1 < 1) {
+      return;
+    } else {
+      currentStage--;
+    }
+    displayStage();
   }
 
-  public void forestButton(ActionEvent event) {
-
+  public void setNextButton() {
+    if (currentStage + 1 > maxStage) {
+      return;
+    } else {
+      currentStage++;
+    }
+   displayStage();
   }
 
-  public void pyramidButton(ActionEvent event) {
-
+  public void displayStage() {
+    Image stageImg = new Image(ChadClimbers.class.getResourceAsStream("stages/stage" + currentStage + ".png"));
+    stageImage.setImage(stageImg);
+    stageTitle.setText("STAGE " + currentStage);
   }
 
-  public void waterfallButton(ActionEvent event) {
-
-  }
 }
