@@ -5,12 +5,12 @@ import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.entiti
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
 /**
  * Start Controller.
+ *
  * @author Oscar
  * @version 2022
  */
@@ -21,6 +21,7 @@ public class Start extends Controller {
   /**
    * Loads FXML file and displays a subscene-like pane.
    * TO DO: Maybe move this method to Controller class.
+   *
    * @param fileName FXML File Name
    * @throws IOException if FXML file is not found.
    */
@@ -29,12 +30,16 @@ public class Start extends Controller {
     rootPane.getChildren().setAll(pane);
   }
 
-  public void playButton() throws IOException {
+  /**
+   * Constructs a game object.
+   */
+  public void playButton() {
     new Game().createNewGame();
   }
 
   /**
    * Invokes setPane method with the Player FXML file.
+   *
    * @throws IOException if FXML file is not found.
    */
   public void playerButton() throws IOException {
@@ -43,16 +48,19 @@ public class Start extends Controller {
 
   /**
    * Invokes setPane method with the SelectStage FXML file.
+   *
    * @throws IOException if FXML file is not found.
    */
   public void stageButton() throws IOException {
     setPane("SelectStage");
   }
+
   /**
    * Invokes setPane method with the Level FXML file.
+   *
    * @throws IOException if FXML file is not found.
    */
-  public void levelButton() throws IOException{
+  public void levelButton() throws IOException {
     setPane("Level");
   }
 }
