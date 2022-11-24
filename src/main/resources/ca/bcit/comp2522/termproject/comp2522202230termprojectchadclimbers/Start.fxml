@@ -12,10 +12,11 @@
             <Font name="Monospaced Bold" size="39.0" />
          </font>
       </Label>
-      <Button id="playerButton" fx:id="playerButton" layoutX="62.0" layoutY="100.0" mnemonicParsing="false" onAction="#playerButton" prefHeight="25.0" prefWidth="63.0" text="Player" />
-      <Button id="levelButton" fx:id="level" layoutX="62.0" layoutY="233.0" mnemonicParsing="false" onAction="#levelButton" prefHeight="26.0" prefWidth="63.0" text="Level" />
+      <Button id="playerButton" fx:id="playerButton" layoutX="62.0" layoutY="150.0" mnemonicParsing="false" onAction="#playerButton" prefHeight="25.0" prefWidth="63.0" text="Player" />
+      <Button id="levelButton" fx:id="level" layoutX="62.0" layoutY="243.0" mnemonicParsing="false" onAction="#levelButton" prefHeight="26.0" prefWidth="63.0" text="Level" />
       <Button id="Main" fx:id="Main" layoutX="62.0" layoutY="289.0" mnemonicParsing="false" onAction="#button" prefHeight="25.0" prefWidth="63.0" text="Go Back" />
-      <Button layoutX="62.0" layoutY="168.0" mnemonicParsing="false" onAction="#stageButton" prefHeight="25.0" prefWidth="63.0" text="Stage" />
+      <Button layoutX="62.0" layoutY="194.0" mnemonicParsing="false" onAction="#stageButton" prefHeight="25.0" prefWidth="63.0" text="Stage" />
       <AnchorPane fx:id="rootPane" layoutX="200.0" layoutY="100.0" prefHeight="226.0" prefWidth="380.0" style="-fx-border-color: black;" />
+      <Button id="playerButton" fx:id="playButton" layoutX="62.0" layoutY="100.0" mnemonicParsing="false" onAction="#playButton" prefHeight="25.0" prefWidth="63.0" text="Play" />
    </children>
 </AnchorPane>

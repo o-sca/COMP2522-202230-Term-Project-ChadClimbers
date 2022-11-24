@@ -10,8 +10,7 @@ import javafx.stage.Stage;
  * @author Oscar
  * @version 2022
  */
-public class
-ChadClimbers extends Application {
+public class ChadClimbers extends Application {
   /**
    * Base start method.
    *

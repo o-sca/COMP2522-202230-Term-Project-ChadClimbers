@@ -1,13 +1,11 @@
 package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.controllers;
 
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.ChadClimbers;
-import javafx.event.ActionEvent;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.entities.Game;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -29,6 +27,10 @@ public class Start extends Controller {
   private void setPane(String fileName) throws IOException {
     AnchorPane pane = FXMLLoader.load(ChadClimbers.class.getResource(fileName + ".fxml"));
     rootPane.getChildren().setAll(pane);
+  }
+
+  public void playButton() throws IOException {
+    new Game().createNewGame();
   }
 
   /**

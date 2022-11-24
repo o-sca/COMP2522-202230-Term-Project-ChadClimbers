@@ -20,9 +20,10 @@ public abstract class Controller {
    * @param event ActionEvent
    * @throws IOException if fxml is not found
    */
-  public void button(ActionEvent event) throws IOException {
+  public Stage button(ActionEvent event) throws IOException {
     Stage stage = loadStage(event);
     stage.show();
+    return stage;
   }
 
   /**
