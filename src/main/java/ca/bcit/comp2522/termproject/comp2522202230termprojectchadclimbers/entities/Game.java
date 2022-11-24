@@ -1,7 +1,6 @@
 package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.entities;
 
 import javafx.animation.AnimationTimer;
-import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -9,6 +8,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+
+import java.security.Key;
 
 /**
  * Game Module.
@@ -29,6 +30,7 @@ public class Game {
   private boolean isLeftKeyPressed;
   private boolean isSpaceBarPressed;
   private boolean isEscKeyPressed;
+  private boolean paused;
 
   private static final int GAME_WIDTH = 600;
   private static final int GAME_HEIGHT = 400;
@@ -72,6 +74,8 @@ public class Game {
    */
   private void createKeyListener() {
     gameScene.setOnKeyPressed(keyEvent -> {
+      /* If paused and keyEvent is not Escape -> return else go to switch case. */
+      if (paused && keyEvent.getCode() != KeyCode.ESCAPE) return;
       switch (keyEvent.getCode()) {
         case ESCAPE -> isEscKeyPressed = true;
         case SPACE -> isSpaceBarPressed = true;
@@ -85,11 +89,16 @@ public class Game {
     });
   }
 
+  /**
+   * Toggles paused variable.
+   */
   private void pause() {
     if (isEscKeyPressed) {
+      paused = !paused;
       isEscKeyPressed = false;
-      System.out.println("Paused");
-      timer.stop();
+      System.out.println(
+          String.format("Paused: %s", paused)
+      );
     }
   }
 
@@ -142,8 +151,10 @@ public class Game {
     timer = new AnimationTimer() {
       @Override
       public void handle(long now) {
-        movePlayer();
-        checkCollision();
+        if (!paused) {
+          movePlayer();
+          checkCollision();
+        }
         pause();
       }
     };
