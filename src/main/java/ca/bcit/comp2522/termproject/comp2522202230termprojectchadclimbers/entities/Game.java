@@ -51,6 +51,9 @@ public class Game {
    */
   private void createPlayer(Player chosenPlayer) {
     player = new ImageView(chosenPlayer.getURL());
+    player.setFitHeight(60);
+    player.setFitWidth(30);
+    player.setPreserveRatio(true);
     gamePane.getChildren().add(player);
   }
 
