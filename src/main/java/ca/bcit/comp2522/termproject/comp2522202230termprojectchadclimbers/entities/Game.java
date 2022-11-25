@@ -1,15 +1,14 @@
 package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.entities;
 
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.components.Pause;
 import javafx.animation.AnimationTimer;
-import javafx.scene.Node;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
-import java.security.Key;
 
 /**
  * Game Module.
@@ -18,11 +17,11 @@ import java.security.Key;
  * @version 2022
  */
 public class Game {
-  private Pane gamePane;
+  private ImageView player;
+  private GridPane gamePane;
   private Scene gameScene;
   private Stage gameStage;
-  private Node player;
-  private AnimationTimer timer;
+  private StackPane pausePane;
 
   private boolean isUpKeyPressed;
   private boolean isDownKeyPressed;
@@ -31,6 +30,7 @@ public class Game {
   private boolean isSpaceBarPressed;
   private boolean isEscKeyPressed;
   private boolean paused;
+  private boolean pausedPanePoppedUp;
 
   private static final int GAME_WIDTH = 600;
   private static final int GAME_HEIGHT = 400;
@@ -39,31 +39,27 @@ public class Game {
    * Creates a new game.
    */
   public void createNewGame() {
-    player = createPlayer();
     initialiseStage();
+    createPlayer(Player.GIRL);
     createKeyListener();
     createTick();
-    gamePane.getChildren().add(player);
     gameStage.show();
   }
 
   /**
    * Constructs a player object.
-   *
-   * @return Node player
    */
-  private Node createPlayer() {
-    Rectangle rectangle = new Rectangle(40, 40, Color.GREEN);
-    rectangle.setTranslateY(GAME_HEIGHT - rectangle.getHeight());
-    rectangle.setTranslateX(GAME_WIDTH / 2.0);
-    return rectangle;
+  private void createPlayer(Player chosenPlayer) {
+    player = new ImageView(chosenPlayer.getURL());
+    gamePane.getChildren().add(player);
   }
 
   /**
    * Initialises a Pane object to create the game stage.
    */
   private void initialiseStage() {
-    gamePane = new Pane();
+    gamePane = new GridPane();
+    gamePane.setAlignment(Pos.CENTER);
     gameScene = new Scene(gamePane, GAME_WIDTH, GAME_HEIGHT);
     gameStage = new Stage();
     gameStage.setScene(gameScene);
@@ -96,9 +92,20 @@ public class Game {
     if (isEscKeyPressed) {
       paused = !paused;
       isEscKeyPressed = false;
-      System.out.println(
-          String.format("Paused: %s", paused)
-      );
+    }
+  }
+
+  /**
+   * Constructs the Pause popup Stack pane.
+   */
+  private void createPausePopup() {
+    if (!pausedPanePoppedUp && paused) {
+      pausedPanePoppedUp = true;
+      pausePane = new Pause().getPausePane();
+      gamePane.getChildren().add(pausePane);
+    } else if (pausedPanePoppedUp && !paused) {
+      pausedPanePoppedUp = false;
+      gamePane.getChildren().remove(pausePane);
     }
   }
 
@@ -108,16 +115,16 @@ public class Game {
   private void movePlayer() {
     if (isUpKeyPressed) {
       isUpKeyPressed = false;
-      player.setTranslateY(player.getTranslateY() - 40);
+      player.setTranslateY(player.getTranslateY() - 20);
     } else if (isDownKeyPressed) {
       isDownKeyPressed = false;
-      player.setTranslateY(player.getTranslateY() + 40);
+      player.setTranslateY(player.getTranslateY() + 20);
     } else if (isLeftKeyPressed) {
       isLeftKeyPressed = false;
-      player.setTranslateX(player.getTranslateX() - 40);
+      player.setTranslateX(player.getTranslateX() - 20);
     } else if (isRightKeyPressed) {
       isRightKeyPressed = false;
-      player.setTranslateX(player.getTranslateX() + 40);
+      player.setTranslateX(player.getTranslateX() + 20);
     } else {
       return;
     }
@@ -127,16 +134,23 @@ public class Game {
    * Checks for all collision events.
    */
   private void checkCollision() {
+    final double playerY = player.getTranslateY() + player.getBoundsInLocal().getCenterY();
+    final double playerX = player.getTranslateX();
     /* Boundary collision detection */
-    if (player.getTranslateX() + player.getBoundsInLocal().getWidth() > GAME_WIDTH) {
-      player.setTranslateX(player.getTranslateX() - 40);
-    } else if (player.getTranslateX() < 0) {
-      player.setTranslateX(player.getTranslateX() + 40);
-    } else if (player.getTranslateY() + player.getBoundsInLocal().getHeight() > GAME_HEIGHT) {
-      player.setTranslateY(player.getTranslateY() - 40);
+    /* When playerX reaches left side of the screen. */
+    if (playerX >= GAME_WIDTH/2.0) {
+      player.setTranslateX(player.getTranslateX() - 20);
+    }
+    /* When playerX reaches right side of screen. */
+    if (playerX <= -GAME_WIDTH/2.0) {
+      player.setTranslateX(player.getTranslateX() + 20);
+    }
+    /* When player Y reaches bottom of screen. */
+    if (playerY > GAME_HEIGHT/2.0) {
+      player.setTranslateY(player.getTranslateY() - 20);
     }
     /* Reach the top, you win! */
-    if (player.getTranslateY() < 0) {
+    if (playerY < -GAME_HEIGHT/2.0) {
       player.setTranslateY(0);
       System.out.println("Win");
       /* Temp exit strategy xD */
@@ -148,7 +162,7 @@ public class Game {
    * Starts interval timer for recurring method calls.
    */
   private void createTick() {
-    timer = new AnimationTimer() {
+    AnimationTimer timer = new AnimationTimer() {
       @Override
       public void handle(long now) {
         if (!paused) {
@@ -156,6 +170,7 @@ public class Game {
           checkCollision();
         }
         pause();
+        createPausePopup();
       }
     };
     timer.start();
