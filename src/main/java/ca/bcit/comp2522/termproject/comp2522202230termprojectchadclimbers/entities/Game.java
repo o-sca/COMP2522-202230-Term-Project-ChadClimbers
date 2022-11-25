@@ -40,7 +40,7 @@ public class Game {
    */
   public void createNewGame() {
     initialiseStage();
-    createPlayer(Player.GIRL);
+    createPlayer(Player.BALD);
     createKeyListener();
     createTick();
     gameStage.show();
