@@ -119,15 +119,19 @@ public class Game {
     if (isUpKeyPressed) {
       isUpKeyPressed = false;
       player.setTranslateY(player.getTranslateY() - 20);
+      player.setRotate(180);
     } else if (isDownKeyPressed) {
       isDownKeyPressed = false;
       player.setTranslateY(player.getTranslateY() + 20);
+      player.setRotate(360);
     } else if (isLeftKeyPressed) {
       isLeftKeyPressed = false;
       player.setTranslateX(player.getTranslateX() - 20);
+      player.setRotate(90);
     } else if (isRightKeyPressed) {
       isRightKeyPressed = false;
       player.setTranslateX(player.getTranslateX() + 20);
+      player.setRotate(-90);
     } else {
       return;
     }
