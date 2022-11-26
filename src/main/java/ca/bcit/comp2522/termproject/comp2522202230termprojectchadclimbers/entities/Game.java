@@ -65,6 +65,14 @@ public class Game {
     gamePane = new GridPane();
     gamePane.setAlignment(Pos.CENTER);
     gameScene = new Scene(gamePane, GAME_WIDTH, GAME_HEIGHT);
+    Image img = new Image(ChadClimbers.class.getResourceAsStream("stages/stage1.png"));
+    gamePane.setBackground(new Background(new BackgroundImage(
+            img,
+            BackgroundRepeat.NO_REPEAT,
+            BackgroundRepeat.NO_REPEAT,
+            BackgroundPosition.CENTER,
+            BackgroundSize.DEFAULT
+    )));
     gameStage = new Stage();
     gameStage.setScene(gameScene);
   }
