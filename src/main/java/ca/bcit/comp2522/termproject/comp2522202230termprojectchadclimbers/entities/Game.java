@@ -1,19 +1,20 @@
 package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.entities;
 
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.ChadClimbers;
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.components.Pause;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 /**
  * Game Module.
  *
- * @author Oscar
+ * @author Oscar && Atsuki
  * @version 2022
  */
 public class Game {
