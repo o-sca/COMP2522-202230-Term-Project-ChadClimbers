@@ -107,6 +107,7 @@ public class Game {
     }
   }
 
+
   /**
    * Constructs the Pause popup Stack pane.
    */
@@ -145,6 +146,7 @@ public class Game {
       return;
     }
   }
+
 
   /**
    * Checks for all collision events.
