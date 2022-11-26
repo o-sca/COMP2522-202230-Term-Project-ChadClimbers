@@ -35,7 +35,7 @@ public class Game {
   private static final int GAME_HEIGHT = 400;
 
   /**
-   * Creates a new game.
+   * Instantiate a new game.
    */
   public void createNewGame() {
     initialiseStage();
@@ -53,8 +53,10 @@ public class Game {
     player.setFitHeight(60);
     player.setFitWidth(30);
     player.setPreserveRatio(true);
+    player.setTranslateY(GAME_HEIGHT);
     gamePane.getChildren().add(player);
   }
+
 
   /**
    * Initialises a Pane object to create the game stage.
