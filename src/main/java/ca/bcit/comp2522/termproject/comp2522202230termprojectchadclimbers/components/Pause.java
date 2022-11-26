@@ -4,6 +4,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 /**
@@ -22,12 +24,13 @@ public class Pause extends StackPane {
   public Pause() {
     pausePane = new StackPane();
     Text pauseText = new Text("Paused");
+    pauseText.setFont(Font.font("MONOSPACED", FontWeight.BOLD, 36));
     pauseText.setFill(Color.BLACK);
     pausePane.setStyle("-fx-background-color: white");
-    pausePane.setLayoutX(WIDTH);
-    pausePane.setLayoutY(HEIGHT);
+    pausePane.setPrefWidth(WIDTH);
+    pausePane.setPrefHeight(HEIGHT);
     pausePane.getChildren().add(pauseText);
-    setAlignment(pauseText, Pos.TOP_CENTER);
+    setAlignment(pauseText, Pos.CENTER);
   }
 
   /**
