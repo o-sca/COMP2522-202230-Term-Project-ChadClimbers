@@ -23,7 +23,6 @@ public class Game {
   private Scene gameScene;
   private Stage gameStage;
   private StackPane pausePane;
-
   private boolean isUpKeyPressed;
   private boolean isDownKeyPressed;
   private boolean isRightKeyPressed;
@@ -32,7 +31,6 @@ public class Game {
   private boolean isEscKeyPressed;
   private boolean paused;
   private boolean pausedPanePoppedUp;
-
   private static final int GAME_WIDTH = 600;
   private static final int GAME_HEIGHT = 400;
 
