@@ -1,19 +1,20 @@
 package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.entities;
 
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.ChadClimbers;
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.components.Pause;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 /**
  * Game Module.
  *
- * @author Oscar
+ * @author Oscar && Atsuki
  * @version 2022
  */
 public class Game {
@@ -22,7 +23,6 @@ public class Game {
   private Scene gameScene;
   private Stage gameStage;
   private StackPane pausePane;
-
   private boolean isUpKeyPressed;
   private boolean isDownKeyPressed;
   private boolean isRightKeyPressed;
@@ -31,16 +31,15 @@ public class Game {
   private boolean isEscKeyPressed;
   private boolean paused;
   private boolean pausedPanePoppedUp;
-
   private static final int GAME_WIDTH = 600;
   private static final int GAME_HEIGHT = 400;
 
   /**
-   * Creates a new game.
+   * Instantiate a new game.
    */
   public void createNewGame() {
     initialiseStage();
-    createPlayer(Player.GIRL);
+    createPlayer(Player.BALD);
     createKeyListener();
     createTick();
     gameStage.show();
@@ -51,8 +50,13 @@ public class Game {
    */
   private void createPlayer(Player chosenPlayer) {
     player = new ImageView(chosenPlayer.getURL());
+    player.setFitHeight(60);
+    player.setFitWidth(30);
+    player.setPreserveRatio(true);
+    player.setTranslateY(GAME_HEIGHT);
     gamePane.getChildren().add(player);
   }
+
 
   /**
    * Initialises a Pane object to create the game stage.
@@ -61,6 +65,14 @@ public class Game {
     gamePane = new GridPane();
     gamePane.setAlignment(Pos.CENTER);
     gameScene = new Scene(gamePane, GAME_WIDTH, GAME_HEIGHT);
+    Image img = new Image(ChadClimbers.class.getResourceAsStream("stages/stage1.png"));
+    gamePane.setBackground(new Background(new BackgroundImage(
+            img,
+            BackgroundRepeat.NO_REPEAT,
+            BackgroundRepeat.NO_REPEAT,
+            BackgroundPosition.CENTER,
+            BackgroundSize.DEFAULT
+    )));
     gameStage = new Stage();
     gameStage.setScene(gameScene);
   }
@@ -95,6 +107,7 @@ public class Game {
     }
   }
 
+
   /**
    * Constructs the Pause popup Stack pane.
    */
@@ -116,19 +129,24 @@ public class Game {
     if (isUpKeyPressed) {
       isUpKeyPressed = false;
       player.setTranslateY(player.getTranslateY() - 20);
+      player.setRotate(180);
     } else if (isDownKeyPressed) {
       isDownKeyPressed = false;
       player.setTranslateY(player.getTranslateY() + 20);
+      player.setRotate(360);
     } else if (isLeftKeyPressed) {
       isLeftKeyPressed = false;
       player.setTranslateX(player.getTranslateX() - 20);
+      player.setRotate(90);
     } else if (isRightKeyPressed) {
       isRightKeyPressed = false;
       player.setTranslateX(player.getTranslateX() + 20);
+      player.setRotate(-90);
     } else {
       return;
     }
   }
+
 
   /**
    * Checks for all collision events.
