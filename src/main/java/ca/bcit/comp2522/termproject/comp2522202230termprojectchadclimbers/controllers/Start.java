@@ -2,6 +2,7 @@ package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.contr
 
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.ChadClimbers;
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.entities.Game;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.entities.PlayerClass;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -25,7 +26,7 @@ public class Start extends Controller {
    * @param fileName FXML File Name
    * @throws IOException if FXML file is not found.
    */
-  private void setPane(String fileName) throws IOException {
+  private void setPane(final String fileName) throws IOException {
     AnchorPane pane = FXMLLoader.load(ChadClimbers.class.getResource(fileName + ".fxml"));
     rootPane.getChildren().setAll(pane);
   }
@@ -34,7 +35,7 @@ public class Start extends Controller {
    * Constructs a game object.
    */
   public void playButton() {
-    new Game().createNewGame();
+    new Game().createNewGame(PlayerClass.BOY);
   }
 
   /**

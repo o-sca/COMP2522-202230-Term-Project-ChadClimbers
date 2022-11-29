@@ -19,7 +19,7 @@ public class SpritePicker extends VBox {
   private final String notChosen = ChadClimbers.class.getResource("circles/NotChosen.png").toString();
   private final String chosen = ChadClimbers.class.getResource("circles/Chosen.png").toString();
 
-  private Sprite sprite;
+  private final Sprite sprite;
 
   private boolean isChosen = false;
 

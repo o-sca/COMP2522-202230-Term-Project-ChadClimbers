@@ -6,9 +6,14 @@ import javafx.animation.AnimationTimer;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -18,11 +23,18 @@ import javafx.stage.Stage;
  * @version 2022
  */
 public class Game {
-  private ImageView player;
+ private static final int GAME_WIDTH = 600;
+  private static final int GAME_HEIGHT = 400;
+  private static final int ROTATE_360 = 360;
+  private static final int ROTATE_180 = 180;
+  private static final int ROTATE_90 = 90;
+  private Player player;
   private GridPane gamePane;
   private Scene gameScene;
   private Stage gameStage;
   private StackPane pausePane;
+  private AnimationTimer timer;
+  private double moveUnits;
   private boolean isUpKeyPressed;
   private boolean isDownKeyPressed;
   private boolean isRightKeyPressed;
@@ -31,15 +43,14 @@ public class Game {
   private boolean isEscKeyPressed;
   private boolean paused;
   private boolean pausedPanePoppedUp;
-  private static final int GAME_WIDTH = 600;
-  private static final int GAME_HEIGHT = 400;
+  private boolean win = false;
 
   /**
    * Instantiate a new game.
    */
-  public void createNewGame() {
+  public void createNewGame(PlayerClass playerClass) {
     initialiseStage();
-    createPlayer(Sprite.JASON);
+    createPlayer(playerClass);
     createKeyListener();
     createTick();
     gameStage.show();
@@ -47,16 +58,11 @@ public class Game {
 
   /**
    * Constructs a player object.
-   * @param chosenPlayer - sprite
    */
-  private void createPlayer(Sprite chosenPlayer) {
-    player = new ImageView(chosenPlayer.getURL());
-    player.setFitHeight(60);
-    player.setFitWidth(30);
-    player.setPreserveRatio(true);
-    player.setTranslateY(GAME_HEIGHT - player.getBoundsInLocal().getHeight());
-    player.setRotate(180);
-    gamePane.getChildren().add(player);
+  private void createPlayer(final PlayerClass playerClass) {
+    player = new Player(playerClass);
+    player.resetPosition(GAME_HEIGHT);
+    gamePane.getChildren().add(player.toImage());
   }
 
   /**
@@ -85,6 +91,7 @@ public class Game {
     gameScene.setOnKeyPressed(keyEvent -> {
       /* If paused and keyEvent is not Escape -> return else go to switch case. */
       if (paused && keyEvent.getCode() != KeyCode.ESCAPE) return;
+
       switch (keyEvent.getCode()) {
         case ESCAPE -> isEscKeyPressed = true;
         case SPACE -> isSpaceBarPressed = true;
@@ -108,7 +115,6 @@ public class Game {
     }
   }
 
-
   /**
    * Constructs the Pause popup Stack pane.
    */
@@ -125,53 +131,55 @@ public class Game {
 
   /**
    * Handle events `set true` key stroke variables.
+   * Handles boundary detections and sprite rotation.
    */
   private void movePlayer() {
     if (isUpKeyPressed) {
       isUpKeyPressed = false;
-      player.setTranslateY(player.getTranslateY() - 20);
-      player.setRotate(180);
-    } else if (isDownKeyPressed) {
+      moveUnits = player.moveUp();
+      /* Reach the top, you win! */
+      if (moveUnits <= -GAME_HEIGHT / 2.0) {
+        win = true;
+        return;
+      }
+      player.toImage().setTranslateY(moveUnits);
+      player.toImage().setRotate(ROTATE_180);
+    }
+    if (isDownKeyPressed) {
       isDownKeyPressed = false;
-      player.setTranslateY(player.getTranslateY() + 20);
-      player.setRotate(360);
-    } else if (isLeftKeyPressed) {
+      moveUnits = player.moveDown();
+      /* When player Y reaches bottom of screen. */
+      if (moveUnits >= GAME_HEIGHT / 2.0) return;
+      player.toImage().setTranslateY(moveUnits);
+      player.toImage().setRotate(ROTATE_360);
+    }
+    if (isLeftKeyPressed) {
       isLeftKeyPressed = false;
-      player.setTranslateX(player.getTranslateX() - 20);
-      player.setRotate(90);
-    } else if (isRightKeyPressed) {
+      moveUnits = player.moveLeft();
+      /* When playerX reaches left side of the screen. */
+      if (moveUnits <= -GAME_WIDTH / 2.0) return;
+      player.toImage().setTranslateX(moveUnits);
+      player.toImage().setRotate(ROTATE_90);
+    }
+    if (isRightKeyPressed) {
       isRightKeyPressed = false;
-      player.setTranslateX(player.getTranslateX() + 20);
-      player.setRotate(-90);
-    } else {
-      return;
+      moveUnits = player.moveRight();
+      /* When playerX reaches right side of screen. */
+      if (moveUnits >= GAME_WIDTH / 2.0) return;
+      player.toImage().setTranslateX(moveUnits);
+      player.toImage().setRotate(-ROTATE_90);
     }
   }
 
   /**
-   * Checks for all collision events.
+   * When win value is true, timer
+   * will stop, player position resets, and
+   * gameStage will close.
    */
-  private void checkCollision() {
-    final double playerY = player.getTranslateY() + player.getBoundsInLocal().getCenterY();
-    final double playerX = player.getTranslateX();
-    /* Boundary collision detection */
-    /* When playerX reaches left side of the screen. */
-    if (playerX >= GAME_WIDTH/2.0) {
-      player.setTranslateX(player.getTranslateX() - 20);
-    }
-    /* When playerX reaches right side of screen. */
-    if (playerX <= -GAME_WIDTH/2.0) {
-      player.setTranslateX(player.getTranslateX() + 20);
-    }
-    /* When player Y reaches bottom of screen. */
-    if (playerY > GAME_HEIGHT/2.0) {
-      player.setTranslateY(player.getTranslateY() - 20);
-    }
-    /* Reach the top, you win! */
-    if (playerY < -GAME_HEIGHT/2.0) {
-      player.setTranslateY(0);
+  private void checkWinStatus() {
+    if (win) {
+      timer.stop();
       System.out.println("Win");
-      /* Temp exit strategy xD */
       gameStage.close();
     }
   }
@@ -180,12 +188,12 @@ public class Game {
    * Starts interval timer for recurring method calls.
    */
   private void createTick() {
-    AnimationTimer timer = new AnimationTimer() {
+   timer = new AnimationTimer() {
       @Override
-      public void handle(long now) {
+      public void handle(final long now) {
         if (!paused) {
           movePlayer();
-          checkCollision();
+          checkWinStatus();
         }
         pause();
         createPausePopup();
