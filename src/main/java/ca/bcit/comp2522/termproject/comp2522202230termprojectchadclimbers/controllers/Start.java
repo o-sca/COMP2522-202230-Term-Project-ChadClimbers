@@ -19,7 +19,7 @@ public class Start extends Controller {
   private AnchorPane rootPane;
 
   /**
-   * Loads FXML file and displays a subscene-like pane.
+   * Loads FXML file and displays a SubScene-like pane.
    * TO DO: Maybe move this method to Controller class.
    *
    * @param fileName FXML File Name
