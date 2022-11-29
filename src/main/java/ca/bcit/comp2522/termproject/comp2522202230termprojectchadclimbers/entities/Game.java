@@ -29,11 +29,14 @@ public class Game {
   private static final int ROTATE_180 = 180;
   private static final int ROTATE_90 = 90;
   private Player player;
+  private PlayerClass playerClass;
+  private Image chosenStage;
   private GridPane gamePane;
   private Scene gameScene;
   private Stage gameStage;
   private StackPane pausePane;
   private AnimationTimer timer;
+  private int chosenLevel = 1;
   private double moveUnits;
   private boolean isUpKeyPressed;
   private boolean isDownKeyPressed;
@@ -47,10 +50,21 @@ public class Game {
 
   /**
    * Instantiate a new game.
+   * @param playerClass PlayerClass
+   * @param chosenStage Image
+   * @param chosenLevel int
    */
-  public void createNewGame(PlayerClass playerClass) {
+  public void createNewGame(
+      final PlayerClass playerClass,
+      final Image chosenStage,
+      final int chosenLevel
+  ) {
+    this.chosenLevel = (chosenLevel != 0) ? chosenLevel : 1;
+    this.chosenStage = (chosenStage != null) ? chosenStage : new Image(ChadClimbers.class.getResourceAsStream("stages/stage1.png"));
+    this.playerClass = (playerClass != null) ? playerClass : PlayerClass.BOY;
+
     initialiseStage();
-    createPlayer(playerClass);
+    createPlayer();
     createKeyListener();
     createTick();
     gameStage.show();
@@ -59,7 +73,7 @@ public class Game {
   /**
    * Constructs a player object.
    */
-  private void createPlayer(final PlayerClass playerClass) {
+  private void createPlayer() {
     player = new Player(playerClass);
     player.resetPosition(GAME_HEIGHT);
     gamePane.getChildren().add(player.toImage());
@@ -72,9 +86,8 @@ public class Game {
     gamePane = new GridPane();
     gamePane.setAlignment(Pos.CENTER);
     gameScene = new Scene(gamePane, GAME_WIDTH, GAME_HEIGHT);
-    Image img = new Image(ChadClimbers.class.getResourceAsStream("stages/stage1.png"));
     gamePane.setBackground(new Background(new BackgroundImage(
-       img,
+       chosenStage,
        BackgroundRepeat.NO_REPEAT,
        BackgroundRepeat.NO_REPEAT,
        BackgroundPosition.CENTER,

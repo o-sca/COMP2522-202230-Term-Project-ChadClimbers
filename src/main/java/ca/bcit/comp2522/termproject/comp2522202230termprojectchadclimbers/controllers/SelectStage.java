@@ -46,10 +46,12 @@ public class SelectStage extends Controller {
 
   /**
    * Displays the current stage image and title.
+   * Sets the instance variable chosenStage.
    */
   public void displayStage() {
-    Image stageImg = new Image(ChadClimbers.class.getResourceAsStream("stages/stage" + currentStage + ".png"));
-    stageImage.setImage(stageImg);
+    Image stageToBeChosen = new Image(ChadClimbers.class.getResourceAsStream("stages/stage" + currentStage + ".png"));
+    setChosenStage(stageToBeChosen);
+    stageImage.setImage(stageToBeChosen);
     stageTitle.setText("STAGE " + currentStage);
   }
 }

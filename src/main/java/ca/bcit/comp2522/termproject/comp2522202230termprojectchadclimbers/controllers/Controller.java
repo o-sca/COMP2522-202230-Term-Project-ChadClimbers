@@ -1,10 +1,12 @@
 package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.controllers;
 
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.ChadClimbers;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.entities.PlayerClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -14,13 +16,21 @@ import java.io.IOException;
  * @author Oscar
  * @version 2022
  */
-public abstract class Controller {
+public class Controller {
+  public static PlayerClass chosenPlayer;
+  public static Image chosenStage;
+  public static int chosenLevel;
+
+  public void setChosenStage(final Image chosenStage) {
+    this.chosenStage = chosenStage;
+  }
+
   /**
    * Redirects to scene stage according to button ID.
    * @param event ActionEvent
    * @throws IOException if fxml is not found
    */
-  public Stage button(ActionEvent event) throws IOException {
+  public Stage button(final ActionEvent event) throws IOException {
     Stage stage = loadStage(event);
     stage.show();
     return stage;
@@ -32,7 +42,7 @@ public abstract class Controller {
    * @return stage
    * @throws IOException if fxml is not found
    */
-  private Stage loadStage(ActionEvent event) throws IOException {
+  private Stage loadStage(final ActionEvent event) throws IOException {
     // Parsing the button's ID to pass to the loader as the file name.
     String id = ((Node) event.getSource()).getId();
 
@@ -41,6 +51,6 @@ public abstract class Controller {
     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Scene scene = new Scene(fxmlLoader.load());
     stage.setScene(scene);
-  return stage;
+    return stage;
   }
 }

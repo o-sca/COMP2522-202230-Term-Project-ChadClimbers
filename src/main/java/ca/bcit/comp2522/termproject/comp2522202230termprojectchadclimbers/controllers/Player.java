@@ -17,7 +17,6 @@ import java.util.ArrayList;
  */
 public class Player extends Controller {
   private final ArrayList<SpritePicker> sprites = new ArrayList<>();
-  private Sprite chosenSprite;
 
   @FXML
   private Pane playerPane;
@@ -68,7 +67,6 @@ public class Player extends Controller {
 
         spriteToPick.setIsChosen(true);
         displayPlayerStats(spriteToPick);
-        chosenSprite = spriteToPick.getSprite();
       });
     }
     return box;
@@ -85,5 +83,6 @@ public class Player extends Controller {
     playerDefense.setText(String.valueOf(playerClass.getStats().defense));
     playerStrength.setText(String.valueOf(playerClass.getStats().strength));
     playerSpeed.setText(String.valueOf(playerClass.getStats().speed));
+    chosenPlayer = PlayerClass.valueOf(spriteToPick.getSprite().name());
   }
 }

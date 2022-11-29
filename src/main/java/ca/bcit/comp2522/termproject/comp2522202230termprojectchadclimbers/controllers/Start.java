@@ -2,7 +2,6 @@ package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.contr
 
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.ChadClimbers;
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.entities.Game;
-import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.entities.PlayerClass;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -35,7 +34,11 @@ public class Start extends Controller {
    * Constructs a game object.
    */
   public void playButton() {
-    new Game().createNewGame(PlayerClass.BOY);
+    new Game().createNewGame(
+        chosenPlayer,
+        chosenStage,
+        chosenLevel
+    );
   }
 
   /**
