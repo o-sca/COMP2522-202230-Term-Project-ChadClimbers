@@ -16,6 +16,7 @@ public class SelectStage extends Controller {
   private ImageView stageImage;
   @FXML
   private Label stageTitle;
+
   public int currentStage = 1;
   private final int maxStage = 3;
 

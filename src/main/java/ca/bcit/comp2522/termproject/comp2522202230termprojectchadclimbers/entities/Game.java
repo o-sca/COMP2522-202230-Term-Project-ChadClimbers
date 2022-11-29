@@ -39,7 +39,7 @@ public class Game {
    */
   public void createNewGame() {
     initialiseStage();
-    createPlayer(Player.BALD);
+    createPlayer(Sprite.JASON);
     createKeyListener();
     createTick();
     gameStage.show();
@@ -47,8 +47,9 @@ public class Game {
 
   /**
    * Constructs a player object.
+   * @param chosenPlayer - sprite
    */
-  private void createPlayer(Player chosenPlayer) {
+  private void createPlayer(Sprite chosenPlayer) {
     player = new ImageView(chosenPlayer.getURL());
     player.setFitHeight(60);
     player.setFitWidth(30);
@@ -56,7 +57,6 @@ public class Game {
     player.setTranslateY(GAME_HEIGHT);
     gamePane.getChildren().add(player);
   }
-
 
   /**
    * Initialises a Pane object to create the game stage.
@@ -67,11 +67,11 @@ public class Game {
     gameScene = new Scene(gamePane, GAME_WIDTH, GAME_HEIGHT);
     Image img = new Image(ChadClimbers.class.getResourceAsStream("stages/stage1.png"));
     gamePane.setBackground(new Background(new BackgroundImage(
-            img,
-            BackgroundRepeat.NO_REPEAT,
-            BackgroundRepeat.NO_REPEAT,
-            BackgroundPosition.CENTER,
-            BackgroundSize.DEFAULT
+       img,
+       BackgroundRepeat.NO_REPEAT,
+       BackgroundRepeat.NO_REPEAT,
+       BackgroundPosition.CENTER,
+       BackgroundSize.DEFAULT
     )));
     gameStage = new Stage();
     gameStage.setScene(gameScene);
@@ -146,7 +146,6 @@ public class Game {
       return;
     }
   }
-
 
   /**
    * Checks for all collision events.
