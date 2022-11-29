@@ -54,7 +54,8 @@ public class Game {
     player.setFitHeight(60);
     player.setFitWidth(30);
     player.setPreserveRatio(true);
-    player.setTranslateY(GAME_HEIGHT);
+    player.setTranslateY(GAME_HEIGHT - player.getBoundsInLocal().getHeight());
+    player.setRotate(180);
     gamePane.getChildren().add(player);
   }
 
