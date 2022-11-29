@@ -1,6 +1,7 @@
 package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.controllers;
 
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.components.SpritePicker;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.entities.PlayerClass;
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.entities.Sprite;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -22,6 +23,15 @@ public class Player extends Controller {
   private Pane playerPane;
   @FXML
   private Label playerName;
+  @FXML
+  private Label playerHP;
+  @FXML
+  private Label playerStrength;
+  @FXML
+  private Label playerDefense;
+  @FXML
+  private Label playerSpeed;
+
 
   /**
    * Replacement for Constructor to perform all post-processing on
@@ -41,8 +51,10 @@ public class Player extends Controller {
    * @return HBox
    */
   private HBox createSpriteToChoose() {
+    final int boxSpace = 40;
+
     HBox box = new HBox();
-    box.setSpacing(40);
+    box.setSpacing(boxSpace);
 
     for (Sprite sprite : Sprite.values()) {
       SpritePicker spriteToPick = new SpritePicker(sprite);
@@ -55,11 +67,23 @@ public class Player extends Controller {
         }
 
         spriteToPick.setIsChosen(true);
-        playerName.setText(spriteToPick.getSprite().name());
+        displayPlayerStats(spriteToPick);
         chosenSprite = spriteToPick.getSprite();
       });
     }
-
     return box;
+  }
+
+  /**
+   * Displays each player class stats onto the pane.
+   * @param spriteToPick SpritePicker
+   */
+  private void displayPlayerStats(final SpritePicker spriteToPick) {
+    final PlayerClass playerClass = PlayerClass.valueOf(spriteToPick.getSprite().name());
+    playerName.setText(spriteToPick.getSprite().name());
+    playerHP.setText(String.valueOf(playerClass.getStats().maxHP));
+    playerDefense.setText(String.valueOf(playerClass.getStats().defense));
+    playerStrength.setText(String.valueOf(playerClass.getStats().strength));
+    playerSpeed.setText(String.valueOf(playerClass.getStats().speed));
   }
 }
