@@ -1,4 +1,4 @@
-package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.entities;
+package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core.player;
 
 /**
  * Builder class made to help construct the

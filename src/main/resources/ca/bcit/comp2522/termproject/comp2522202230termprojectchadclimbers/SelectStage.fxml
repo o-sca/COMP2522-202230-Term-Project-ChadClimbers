@@ -16,7 +16,7 @@
       </Label>
       <ImageView id="stageImage" fx:id="stageImage" fitHeight="129.0" fitWidth="211.0" layoutX="83.0" layoutY="51.0" pickOnBounds="true">
          <image>
-            <Image url="@stages/stage1.png" />
+            <Image url="@stages/city.png" />
          </image>
       </ImageView>
       <Label fx:id="stageTitle" layoutX="170.0" layoutY="200.0" text="STAGE 1" textAlignment="CENTER">

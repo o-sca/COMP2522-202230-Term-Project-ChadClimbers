@@ -1,7 +1,7 @@
 package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.controllers;
 
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.ChadClimbers;
-import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.entities.PlayerClass;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums.PlayerClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -17,10 +17,14 @@ import java.io.IOException;
  * @version 2022
  */
 public class Controller {
-  public static PlayerClass chosenPlayer;
-  public static Image chosenStage;
-  public static int chosenLevel;
+  public static PlayerClass chosenPlayer = PlayerClass.BOY;
+  public static Image chosenStage = new Image(ChadClimbers.class.getResourceAsStream("stages/city.png"));
+  public static int chosenLevel = 1;
 
+  /**
+   * Sets the chosenStage value.
+   * @param chosenStage
+   */
   public void setChosenStage(final Image chosenStage) {
     this.chosenStage = chosenStage;
   }

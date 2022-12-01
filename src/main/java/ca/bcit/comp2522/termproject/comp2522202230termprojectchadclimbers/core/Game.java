@@ -1,7 +1,8 @@
-package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.entities;
+package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core;
 
-import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.ChadClimbers;
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.components.Pause;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core.player.Player;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums.PlayerClass;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -59,9 +60,9 @@ public class Game {
       final Image chosenStage,
       final int chosenLevel
   ) {
-    this.chosenLevel = (chosenLevel != 0) ? chosenLevel : 1;
-    this.chosenStage = (chosenStage != null) ? chosenStage : new Image(ChadClimbers.class.getResourceAsStream("stages/stage1.png"));
-    this.playerClass = (playerClass != null) ? playerClass : PlayerClass.BOY;
+    this.chosenLevel = chosenLevel;
+    this.chosenStage = chosenStage;
+    this.playerClass = playerClass;
 
     initialiseStage();
     createPlayer();

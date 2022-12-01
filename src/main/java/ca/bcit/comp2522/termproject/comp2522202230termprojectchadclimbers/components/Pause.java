@@ -1,7 +1,6 @@
 package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.components;
 
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;

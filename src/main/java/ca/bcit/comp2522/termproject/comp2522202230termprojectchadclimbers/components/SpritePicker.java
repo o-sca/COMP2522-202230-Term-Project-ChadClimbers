@@ -1,7 +1,7 @@
 package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.components;
 
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.ChadClimbers;
-import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.entities.Sprite;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums.Sprite;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,7 +27,7 @@ public class SpritePicker extends VBox {
    * Constructs the SpritePicker object type.
    * @param newSprite Sprite
    */
-  public SpritePicker(Sprite newSprite) {
+  public SpritePicker(final Sprite newSprite) {
     sprite = newSprite;
     createCircle();
     createSprite();

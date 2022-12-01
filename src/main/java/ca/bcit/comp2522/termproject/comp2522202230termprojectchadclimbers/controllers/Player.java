@@ -1,8 +1,8 @@
 package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.controllers;
 
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.components.SpritePicker;
-import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.entities.PlayerClass;
-import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.entities.Sprite;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums.PlayerClass;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums.Sprite;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;

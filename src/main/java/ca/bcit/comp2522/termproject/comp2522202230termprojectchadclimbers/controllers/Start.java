@@ -1,9 +1,10 @@
 package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.controllers;
 
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.ChadClimbers;
-import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.entities.Game;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core.Game;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -17,6 +18,12 @@ import java.io.IOException;
 public class Start extends Controller {
   @FXML
   private AnchorPane rootPane;
+  @FXML
+  private Label selectedStage;
+  @FXML
+  private Label selectedLevel;
+  @FXML
+  private Label selectedPlayer;
 
   /**
    * Loads FXML file and displays a SubScene-like pane.
@@ -47,6 +54,7 @@ public class Start extends Controller {
    * @throws IOException if FXML file is not found.
    */
   public void playerButton() throws IOException {
+    updateSelected();
     setPane("Player");
   }
 
@@ -67,4 +75,11 @@ public class Start extends Controller {
   public void levelButton() throws IOException {
     setPane("Level");
   }
+
+  private void updateSelected() {
+    selectedLevel.setText("Easy");
+    selectedPlayer.setText(chosenPlayer.name());
+    selectedStage.setText(chosenStage.toString());
+  }
+
 }
