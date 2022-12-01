@@ -1,4 +1,7 @@
-package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.entities;
+package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums;
+
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.entities.Builder;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.entities.Stats;
 
 /**
  * Represents the PlayerClass Enum Class.
