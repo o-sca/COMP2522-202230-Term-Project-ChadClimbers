@@ -1,12 +1,14 @@
 package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.controllers;
 
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.ChadClimbers;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums.ChadStage;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums.Level;
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums.PlayerClass;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,17 +18,67 @@ import java.io.IOException;
  * @author Oscar
  * @version 2022
  */
-public class Controller {
-  public static PlayerClass chosenPlayer = PlayerClass.BOY;
-  public static Image chosenStage = new Image(ChadClimbers.class.getResourceAsStream("stages/city.png"));
-  public static int chosenLevel = 1;
+public abstract class Controller {
+  public static PlayerClass chosenPlayer;
+  public static ChadStage chosenStage;
+  public static Level chosenLevel;
 
   /**
-   * Sets the chosenStage value.
-   * @param chosenStage
+   * Sets the default chosen values.
    */
-  public void setChosenStage(final Image chosenStage) {
-    this.chosenStage = chosenStage;
+  @FXML
+  public void initialize() {
+    setChosenPlayer(PlayerClass.BOY);
+    setChosenLevel(Level.EASY);
+    setChosenStage(ChadStage.CITY);
+  }
+
+  /**
+   * Returns the chosenLevel.
+   * @return chosenLevel
+   */
+  public static Level getChosenLevel() {
+    return chosenLevel;
+  }
+
+  /**
+   * Returns the chosenPlayer.
+   * @return chosenPlayer
+   */
+  public static PlayerClass getChosenPlayer() {
+    return chosenPlayer;
+  }
+
+  /**
+   * Return the chosenStage.
+   * @return chosenStage.
+   */
+  public static ChadStage getChosenStage() {
+    return chosenStage;
+  }
+
+  /**
+   * Sets the chosenLevel.
+   * @param chosenLevel Level
+   */
+  public void setChosenLevel(final Level chosenLevel) {
+    Controller.chosenLevel = chosenLevel;
+  }
+
+  /**
+   * Sets the chosenPlayer.
+   * @param chosenPlayer PlayerClass
+   */
+  public void setChosenPlayer(final PlayerClass chosenPlayer) {
+    Controller.chosenPlayer = chosenPlayer;
+  }
+
+  /**
+   * Sets the chosenStage.
+   * @param chosenStage ChadStage
+   */
+  public void setChosenStage(final ChadStage chosenStage) {
+    Controller.chosenStage = chosenStage;
   }
 
   /**

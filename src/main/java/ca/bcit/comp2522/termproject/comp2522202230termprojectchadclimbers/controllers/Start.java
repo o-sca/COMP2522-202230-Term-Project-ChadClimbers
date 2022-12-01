@@ -26,6 +26,14 @@ public class Start extends Controller {
   private Label selectedPlayer;
 
   /**
+   * Invokes the updatedSelected method.
+   */
+  @FXML
+  public void initialize() {
+    updateSelected();
+  }
+
+  /**
    * Loads FXML file and displays a SubScene-like pane.
    * TO DO: Maybe move this method to Controller class.
    *
@@ -41,10 +49,11 @@ public class Start extends Controller {
    * Constructs a game object.
    */
   public void playButton() {
+    updateSelected();
     new Game().createNewGame(
-        chosenPlayer,
-        chosenStage,
-        chosenLevel
+        getChosenPlayer(),
+        getChosenStage(),
+        getChosenLevel()
     );
   }
 
@@ -64,6 +73,7 @@ public class Start extends Controller {
    * @throws IOException if FXML file is not found.
    */
   public void stageButton() throws IOException {
+    updateSelected();
     setPane("SelectStage");
   }
 
@@ -73,13 +83,16 @@ public class Start extends Controller {
    * @throws IOException if FXML file is not found.
    */
   public void levelButton() throws IOException {
+    updateSelected();
     setPane("Level");
   }
 
+  /**
+   * Updates the selected values.
+   */
   private void updateSelected() {
-    selectedLevel.setText("Easy");
-    selectedPlayer.setText(chosenPlayer.name());
-    selectedStage.setText(chosenStage.toString());
+    selectedLevel.setText(getChosenLevel().name());
+    selectedPlayer.setText(getChosenPlayer().name());
+    selectedStage.setText(getChosenStage().name());
   }
-
 }

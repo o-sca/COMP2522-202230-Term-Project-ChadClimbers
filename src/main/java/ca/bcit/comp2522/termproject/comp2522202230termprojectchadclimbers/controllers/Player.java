@@ -41,7 +41,13 @@ public class Player extends Controller {
   @FXML
   public void initialize() {
     playerPane.getChildren().add(createSpriteToChoose());
+    displayDefault();
+  }
 
+  private void displayDefault() {
+    final SpritePicker defaultSpritePicker = new SpritePicker(Sprite.valueOf(getChosenPlayer().name()));
+    defaultSpritePicker.setIsChosen(true);
+    displayPlayerStats(defaultSpritePicker);
   }
 
   /**
@@ -83,6 +89,6 @@ public class Player extends Controller {
     playerDefense.setText(String.valueOf(playerClass.getStats().defense));
     playerStrength.setText(String.valueOf(playerClass.getStats().strength));
     playerSpeed.setText(String.valueOf(playerClass.getStats().speed));
-    chosenPlayer = PlayerClass.valueOf(spriteToPick.getSprite().name());
+    setChosenPlayer(PlayerClass.valueOf(spriteToPick.getSprite().name()));
   }
 }

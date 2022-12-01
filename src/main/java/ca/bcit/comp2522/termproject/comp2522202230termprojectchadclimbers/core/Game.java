@@ -2,6 +2,8 @@ package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core;
 
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.components.Pause;
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core.player.Player;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums.ChadStage;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums.Level;
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums.PlayerClass;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Pos;
@@ -31,13 +33,13 @@ public class Game {
   private static final int ROTATE_90 = 90;
   private Player player;
   private PlayerClass playerClass;
-  private Image chosenStage;
+  private ChadStage chosenStage;
   private GridPane gamePane;
   private Scene gameScene;
   private Stage gameStage;
   private StackPane pausePane;
+  private Level chosenLevel;
   private AnimationTimer timer;
-  private int chosenLevel = 1;
   private double moveUnits;
   private boolean isUpKeyPressed;
   private boolean isDownKeyPressed;
@@ -52,13 +54,13 @@ public class Game {
   /**
    * Instantiate a new game.
    * @param playerClass PlayerClass
-   * @param chosenStage Image
+   * @param chosenStage ChadStage
    * @param chosenLevel int
    */
   public void createNewGame(
       final PlayerClass playerClass,
-      final Image chosenStage,
-      final int chosenLevel
+      final ChadStage chosenStage,
+      final Level chosenLevel
   ) {
     this.chosenLevel = chosenLevel;
     this.chosenStage = chosenStage;
@@ -88,7 +90,7 @@ public class Game {
     gamePane.setAlignment(Pos.CENTER);
     gameScene = new Scene(gamePane, GAME_WIDTH, GAME_HEIGHT);
     gamePane.setBackground(new Background(new BackgroundImage(
-       chosenStage,
+       chosenStage.getImage(),
        BackgroundRepeat.NO_REPEAT,
        BackgroundRepeat.NO_REPEAT,
        BackgroundPosition.CENTER,

@@ -81,4 +81,6 @@ public enum PlayerClass {
   public String getUrl() {
     return stats.url;
   }
+
+
 }

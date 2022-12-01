@@ -24,14 +24,6 @@ public enum ChadStage {
   }
 
   /**
-   * Returns URL of stage.
-   * @return chadStageURL
-   */
-  public String getURL() {
-    return chadStageURL;
-  }
-
-  /**
    * Returns the stage as an Image object.
    * @return Image object stage
    */

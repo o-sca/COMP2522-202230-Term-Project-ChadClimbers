@@ -3,7 +3,6 @@ package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.contr
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums.ChadStage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
@@ -17,8 +16,17 @@ public class SelectStage extends Controller {
   @FXML
   private Label stageTitle;
 
-  private int currentStage;
+  private int currentStage = 0;
   private final int maxStage = 2;
+
+  /**
+   * Sets the initial stage display.
+   */
+  @FXML
+  public void initialize() {
+    currentStage = 0;
+    displayStage();
+  }
 
   /**
    * Set stage to the previous stage.
@@ -49,10 +57,8 @@ public class SelectStage extends Controller {
    * Sets the instance variable chosenStage.
    */
   public void displayStage() {
-    System.out.println(currentStage);
-    Image stageToBeChosen = ChadStage.values()[currentStage].getImage();
-    setChosenStage(stageToBeChosen);
-    stageImage.setImage(stageToBeChosen);
-    stageTitle.setText("STAGE " + currentStage);
+    chosenStage = ChadStage.values()[currentStage];
+    stageImage.setImage(chosenStage.getImage());
+    stageTitle.setText(chosenStage.name());
   }
 }
