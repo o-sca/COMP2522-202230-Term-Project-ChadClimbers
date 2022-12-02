@@ -142,10 +142,10 @@ public class Game {
       switch (keyEvent.getCode()) {
         case ESCAPE -> isEscKeyPressed = true;
         case SPACE -> isSpaceBarPressed = true;
-        case LEFT -> isLeftKeyPressed = true;
-        case RIGHT -> isRightKeyPressed = true;
-        case UP -> isUpKeyPressed = true;
-        case DOWN -> isDownKeyPressed = true;
+        case LEFT, A -> isLeftKeyPressed = true;
+        case RIGHT, D -> isRightKeyPressed = true;
+        case UP, W -> isUpKeyPressed = true;
+        case DOWN, S -> isDownKeyPressed = true;
         default -> {
         }
       }
