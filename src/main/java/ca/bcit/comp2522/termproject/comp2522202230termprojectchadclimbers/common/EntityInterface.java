@@ -12,12 +12,6 @@ public interface EntityInterface {
   int width = 30;
 
   /**
-   * Move entity.
-   * @return moveUnits double
-   */
-  double move();
-
-  /**
    * Construct entity.
    *
    */
