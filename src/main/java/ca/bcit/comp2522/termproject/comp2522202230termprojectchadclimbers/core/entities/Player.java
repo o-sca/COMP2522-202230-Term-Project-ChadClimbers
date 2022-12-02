@@ -1,5 +1,6 @@
 package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core.entities;
 
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.common.EntityInterface;
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.common.PlayerClass;
 import javafx.scene.image.ImageView;
 
@@ -8,13 +9,8 @@ import javafx.scene.image.ImageView;
  * @author Oscar
  * @version 2022
  */
-public class Player extends ImageView {
-  private static final int PLAYER_HEIGHT = 60;
-  private static final int PLAYER_WIDTH = 30;
-  private static final int ROTATE_180 = 180;
-
+public class Player extends ImageView implements EntityInterface {
   private final ImageView player;
-  private final PlayerClass playerClass;
   private final Stats stats;
 
   /**
@@ -22,21 +18,20 @@ public class Player extends ImageView {
    * @param playerClass PlayerClass
    */
   public Player(final PlayerClass playerClass) {
-    this.playerClass = playerClass;
     this.stats = playerClass.getStats();
 
     player = new ImageView(playerClass.getUrl());
-    player.setFitHeight(PLAYER_HEIGHT);
-    player.setFitWidth(PLAYER_WIDTH);
+    player.setFitHeight(height);
+    player.setFitWidth(width);
     player.setPreserveRatio(true);
-    player.setRotate(ROTATE_180);
+    player.setRotate(180);
   }
 
   /**
    * Returns the ImageView object type of player.
    * @return ImageView
    */
-  public ImageView toImage() {
+  public ImageView create() {
     return player;
   }
 
@@ -45,7 +40,7 @@ public class Player extends ImageView {
    * @return double
    */
   public double moveUp() {
-    return player.getTranslateY() - playerClass.getStats().speed;
+    return player.getTranslateY() - stats.speed;
   }
 
   /**
@@ -53,7 +48,7 @@ public class Player extends ImageView {
    * @return double
    */
   public double moveDown() {
-    return player.getTranslateY() + playerClass.getStats().speed;
+    return player.getTranslateY() + stats.speed;
   }
 
   /**
@@ -61,7 +56,7 @@ public class Player extends ImageView {
    * @return double
    */
   public double moveLeft() {
-    return player.getTranslateX() - playerClass.getStats().speed;
+    return player.getTranslateX() - stats.speed;
   }
 
   /**
@@ -69,7 +64,7 @@ public class Player extends ImageView {
    * @return double
    */
   public double moveRight() {
-    return player.getTranslateX() + playerClass.getStats().speed;
+    return player.getTranslateX() + stats.speed;
   }
 
   /**
@@ -78,5 +73,10 @@ public class Player extends ImageView {
    */
   public void resetPosition(final int height) {
     player.setTranslateY(height / 2.0 - player.getBoundsInLocal().getHeight());
+  }
+
+  @Override
+  public void attack() {
+
   }
 }

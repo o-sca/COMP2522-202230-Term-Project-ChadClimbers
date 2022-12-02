@@ -12,16 +12,9 @@ import java.util.Random;
  * @version 2022
  */
 public class Enemy extends ImageView implements EntityInterface {
-  final public int height = 60;
-  final public int width = 30;
+  final private ImageView enemy;
+  final public Stats stats;
 
-  final public ImageView enemy;
-
-  public int maxHP;
-  public int speed;
-  public int strength;
-  public int defense;
-  public String url;
 
   /**
    * Construct the object type Enemy.
@@ -33,11 +26,7 @@ public class Enemy extends ImageView implements EntityInterface {
     enemy.setFitWidth(width);
     enemy.setFitHeight(height);
 
-    maxHP = enemyClass.getStats().maxHP;
-    speed = enemyClass.getStats().speed;
-    strength = enemyClass.getStats().strength;
-    defense = enemyClass.getStats().defense;
-    url = enemyClass.getStats().url;
+    stats = enemyClass.getStats();
   }
 
   /**
@@ -48,16 +37,19 @@ public class Enemy extends ImageView implements EntityInterface {
     return enemy;
   }
 
-  @Override
+  /**
+   * Move enemy entity randomly left or right.
+   * @return move unit Double
+   */
   public double move() {
     Random rng = new Random();
 
     int randInt = rng.nextInt(0,2);
 
     if (randInt == 0) {
-      return enemy.getTranslateX() - speed;
+      return enemy.getTranslateX() - stats.speed;
     } else {
-      return enemy.getTranslateX() + speed;
+      return enemy.getTranslateX() + stats.speed;
     }
   }
 

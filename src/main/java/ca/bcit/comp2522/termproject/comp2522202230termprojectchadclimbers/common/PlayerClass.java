@@ -24,7 +24,7 @@ public enum PlayerClass implements EntityEnumInterface {
       .setUrl(ChadClimbers.class.getResource("sprites/player1.gif").toString())
       .setDefense(10)
       .setStrength(3)
-      .setMaxHP(5)
+      .setMaxHP(80)
       .setSpeed(30)
       .build()
   ),
@@ -33,7 +33,7 @@ public enum PlayerClass implements EntityEnumInterface {
       .setUrl(ChadClimbers.class.getResource("sprites/player2.gif").toString())
       .setDefense(20)
       .setStrength(15)
-      .setMaxHP(3)
+      .setMaxHP(70)
       .setSpeed(30)
       .build()
   ),
@@ -42,7 +42,7 @@ public enum PlayerClass implements EntityEnumInterface {
       .setUrl(ChadClimbers.class.getResource("sprites/player4.gif").toString())
       .setDefense(40)
       .setStrength(25)
-      .setMaxHP(5)
+      .setMaxHP(60)
       .setSpeed(20)
       .build()
   ),
