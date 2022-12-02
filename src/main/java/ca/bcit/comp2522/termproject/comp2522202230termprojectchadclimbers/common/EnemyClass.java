@@ -25,7 +25,7 @@ public enum EnemyClass implements EntityEnumInterface {
           .setDefense(3)
           .setStrength(3)
           .setMaxHP(5)
-          .setSpeed(3)
+          .setSpeed(30)
           .build()
   ),
   ALIEN(
@@ -34,7 +34,7 @@ public enum EnemyClass implements EntityEnumInterface {
           .setDefense(4)
           .setStrength(6)
           .setMaxHP(1)
-          .setSpeed(3)
+          .setSpeed(20)
           .build()
   );
 

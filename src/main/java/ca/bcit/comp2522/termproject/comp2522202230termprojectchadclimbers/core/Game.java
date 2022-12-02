@@ -20,6 +20,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 /**
  * Game Module.
  *
@@ -32,7 +35,7 @@ public class Game {
   private static final int ROTATE_360 = 360;
   private static final int ROTATE_180 = 180;
   private static final int ROTATE_90 = 90;
-  private Enemy enemy;
+  private ArrayList<Enemy> enemies = new ArrayList<>();
   private Player player;
   private PlayerClass playerClass;
   private ChadStage chosenStage;
@@ -43,7 +46,6 @@ public class Game {
   private Level chosenLevel;
   private AnimationTimer timer;
   private long later;
-  private double moveUnits;
   private boolean isUpKeyPressed;
   private boolean isDownKeyPressed;
   private boolean isRightKeyPressed;
@@ -70,8 +72,8 @@ public class Game {
     this.playerClass = playerClass;
 
     initialiseStage();
+    populateEnemies();
     createPlayer();
-    createEnemy();
     createKeyListener();
     createTick();
     gameStage.show();
@@ -86,9 +88,29 @@ public class Game {
     gamePane.getChildren().add(player.toImage());
   }
 
-  private void createEnemy() {
-    enemy = new Enemy(EnemyClass.SANS);
+  /**
+   * Adds enemy to the ArrayList enemies corresponding to
+   * the level.
+   */
+  private void populateEnemies() {
+    int i = 0;
+    while (i < (chosenLevel.getSelectedLevel() + 1) * 5) {
+      enemies.add(createEnemy());
+      i++;
+    }
+  }
+
+  /**
+   * Creates the enemy.
+   * @return Enemy enemy
+   */
+  private Enemy createEnemy() {
+    Random rng = new Random();
+    Enemy enemy = new Enemy(EnemyClass.SANS);
+    enemy.create().setTranslateY(rng.nextDouble(-GAME_HEIGHT/2.0 + enemy.height, GAME_HEIGHT/2.0 - enemy.height*2.5));
+    enemy.create().setTranslateX(rng.nextDouble(-GAME_WIDTH/2.0, GAME_WIDTH/2.0));
     gamePane.getChildren().add(enemy.create());
+    return enemy;
   }
 
   /**
@@ -154,6 +176,22 @@ public class Game {
     }
   }
 
+  /**
+   * Simple collision detection between enemies and player.
+   */
+  private void collisionCheck() {
+    for (Enemy enemy : enemies) {
+      if (enemy.create().getBoundsInParent().intersects(player.toImage().getBoundsInParent())) {
+        player.toImage().setTranslateY(GAME_HEIGHT/2.0);
+        return;
+      }
+    }
+  }
+
+  /**
+   * Iterates each enemy to move them.
+   * @param now long.
+   */
   private void moveEnemy(final long now) {
     final long wait = 300000000;
     if (later == 0 || now >= later) {
@@ -162,16 +200,17 @@ public class Game {
       return;
     }
 
-    double enemyMoveUnits;
-    enemyMoveUnits = enemy.move();
-    if (
+    for (Enemy enemy : enemies) {
+      double enemyMoveUnits;
+      enemyMoveUnits = enemy.move();
+      if (
         enemyMoveUnits <= -GAME_WIDTH / 2.0 ||
         enemyMoveUnits >= GAME_WIDTH / 2.0
     ) {
       return;
     } else {
       enemy.create().setTranslateX(enemyMoveUnits);
-
+      }
     }
   }
 
@@ -180,6 +219,7 @@ public class Game {
    * Handles boundary detections and sprite rotation.
    */
   private void movePlayer() {
+    double moveUnits;
     if (isUpKeyPressed) {
       isUpKeyPressed = false;
       moveUnits = player.moveUp();
@@ -240,6 +280,7 @@ public class Game {
         if (!paused) {
           movePlayer();
           moveEnemy(now);
+          collisionCheck();
           checkWinStatus();
         }
         pause();
