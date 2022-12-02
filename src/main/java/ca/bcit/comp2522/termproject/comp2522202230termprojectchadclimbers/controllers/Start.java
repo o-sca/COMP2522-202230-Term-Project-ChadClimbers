@@ -2,7 +2,6 @@ package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.contr
 
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.ChadClimbers;
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core.Game;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
