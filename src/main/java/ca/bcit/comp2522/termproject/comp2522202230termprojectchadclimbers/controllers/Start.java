@@ -2,9 +2,11 @@ package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.contr
 
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.ChadClimbers;
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core.Game;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -19,6 +21,8 @@ public class Start extends Controller {
   @FXML
   private AnchorPane rootPane;
   @FXML
+  private AnchorPane dynamicPane;
+  @FXML
   private Label selectedStage;
   @FXML
   private Label selectedLevel;
@@ -26,11 +30,16 @@ public class Start extends Controller {
   private Label selectedPlayer;
 
   /**
-   * Invokes the updatedSelected method.
+   * Invokes the updatedSelected method and
+   * adds an EventFilter method to update whenever
+   * a mouse event occurs.
    */
   @FXML
   public void initialize() {
     updateSelected();
+    rootPane.addEventFilter(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+      updateSelected();
+    });
   }
 
   /**
@@ -42,14 +51,13 @@ public class Start extends Controller {
    */
   private void setPane(final String fileName) throws IOException {
     AnchorPane pane = FXMLLoader.load(ChadClimbers.class.getResource(fileName + ".fxml"));
-    rootPane.getChildren().setAll(pane);
+    dynamicPane.getChildren().setAll(pane);
   }
 
   /**
    * Constructs a game object.
    */
   public void playButton() {
-    updateSelected();
     new Game().createNewGame(
         getChosenPlayer(),
         getChosenStage(),
@@ -63,7 +71,6 @@ public class Start extends Controller {
    * @throws IOException if FXML file is not found.
    */
   public void playerButton() throws IOException {
-    updateSelected();
     setPane("Player");
   }
 
@@ -73,7 +80,6 @@ public class Start extends Controller {
    * @throws IOException if FXML file is not found.
    */
   public void stageButton() throws IOException {
-    updateSelected();
     setPane("SelectStage");
   }
 
@@ -83,7 +89,6 @@ public class Start extends Controller {
    * @throws IOException if FXML file is not found.
    */
   public void levelButton() throws IOException {
-    updateSelected();
     setPane("Level");
   }
 

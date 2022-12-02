@@ -18,7 +18,7 @@ public class ChadClimbers extends Application {
    * @throws Exception if any exceptions occur
    */
   @Override
-  public void start(Stage stage) throws Exception {
+  public void start(final Stage stage) throws Exception {
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Main.fxml"));
     Scene scene = new Scene(fxmlLoader.load());
 
@@ -33,7 +33,7 @@ public class ChadClimbers extends Application {
    * Driver of the program.
    * @param args unused
    */
-  public static void main(String[] args) {
+  public static void main(final String[] args) {
     launch();
   }
 }
