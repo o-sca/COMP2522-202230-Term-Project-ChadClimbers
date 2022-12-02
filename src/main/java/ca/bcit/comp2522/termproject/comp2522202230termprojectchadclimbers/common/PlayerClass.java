@@ -1,17 +1,18 @@
-package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums;
+package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.common;
 
-import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core.player.Builder;
-import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core.player.Stats;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.ChadClimbers;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core.entities.Builder;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core.entities.Stats;
 
 /**
  * Represents the PlayerClass Enum Class.
  * @author Oscar
  * @version 2022
  */
-public enum PlayerClass {
+public enum PlayerClass implements EntityEnumInterface {
   JASON(
     new Builder()
-      .setUrl(Sprite.JASON.getURL())
+      .setUrl(ChadClimbers.class.getResource("sprites/player3.gif").toString())
       .setDefense(100)
       .setStrength(100)
       .setMaxHP(100)
@@ -20,7 +21,7 @@ public enum PlayerClass {
   ),
   GIRL(
     new Builder()
-      .setUrl(Sprite.GIRL.getURL())
+      .setUrl(ChadClimbers.class.getResource("sprites/player1.gif").toString())
       .setDefense(10)
       .setStrength(3)
       .setMaxHP(5)
@@ -29,7 +30,7 @@ public enum PlayerClass {
   ),
   HAT(
      new Builder()
-      .setUrl(Sprite.HAT.getURL())
+      .setUrl(ChadClimbers.class.getResource("sprites/player2.gif").toString())
       .setDefense(20)
       .setStrength(15)
       .setMaxHP(3)
@@ -38,7 +39,7 @@ public enum PlayerClass {
   ),
   BOY(
     new Builder()
-      .setUrl(Sprite.BOY.getURL())
+      .setUrl(ChadClimbers.class.getResource("sprites/player4.gif").toString())
       .setDefense(40)
       .setStrength(25)
       .setMaxHP(5)
@@ -47,7 +48,7 @@ public enum PlayerClass {
   ),
   TUX(
      new Builder()
-      .setUrl(Sprite.BOY.getURL())
+      .setUrl(ChadClimbers.class.getResource("sprites/player5.gif").toString())
       .setDefense(10)
       .setStrength(35)
       .setMaxHP(4)
@@ -66,18 +67,12 @@ public enum PlayerClass {
     this.stats = stats;
   }
 
-  /**
-   * Returns the stats of the PlayerClass.
-   * @return Stats
-   */
+  @Override
   public Stats getStats() {
     return stats;
   }
 
-  /**
-   * Returns the PlayerClass Url.
-   * @return String
-   */
+  @Override
   public String getUrl() {
     return stats.url;
   }

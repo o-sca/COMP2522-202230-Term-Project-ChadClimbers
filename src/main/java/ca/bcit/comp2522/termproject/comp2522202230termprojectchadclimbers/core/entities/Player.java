@@ -1,6 +1,6 @@
-package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core.player;
+package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core.entities;
 
-import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums.PlayerClass;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.common.PlayerClass;
 import javafx.scene.image.ImageView;
 
 /**

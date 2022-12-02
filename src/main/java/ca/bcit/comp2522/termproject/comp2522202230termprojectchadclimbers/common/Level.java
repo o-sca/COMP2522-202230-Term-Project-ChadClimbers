@@ -1,4 +1,4 @@
-package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums;
+package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.common;
 
 /**
  * Enum class for Level.

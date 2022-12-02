@@ -1,9 +1,9 @@
 package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.controllers;
 
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.ChadClimbers;
-import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums.ChadStage;
-import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums.Level;
-import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums.PlayerClass;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.common.ChadStage;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.common.Level;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.common.PlayerClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +18,7 @@ import java.io.IOException;
  * @author Oscar
  * @version 2022
  */
-public abstract class Controller {
+public class Controller {
   public static PlayerClass chosenPlayer;
   public static ChadStage chosenStage;
   public static Level chosenLevel;
@@ -84,6 +84,7 @@ public abstract class Controller {
   /**
    * Redirects to scene stage according to button ID.
    * @param event ActionEvent
+   * @return stage Stage
    * @throws IOException if fxml is not found
    */
   public Stage button(final ActionEvent event) throws IOException {

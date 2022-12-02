@@ -1,6 +1,6 @@
 package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.controllers;
 
-import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums.Level;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.common.Level;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 

@@ -1,7 +1,7 @@
 package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.components;
 
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.ChadClimbers;
-import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums.Sprite;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.common.PlayerClass;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,18 +19,18 @@ public class SpritePicker extends VBox {
   private final String notChosen = ChadClimbers.class.getResource("circles/NotChosen.png").toString();
   private final String chosen = ChadClimbers.class.getResource("circles/Chosen.png").toString();
 
-  private final Sprite sprite;
+  private final PlayerClass playerClass;
 
   private boolean isChosen = false;
 
   /**
    * Constructs the SpritePicker object type.
-   * @param newSprite Sprite
+   * @param playerClass PlayerClass
    */
-  public SpritePicker(final Sprite newSprite) {
-    sprite = newSprite;
+  public SpritePicker(final PlayerClass playerClass) {
+    this.playerClass = playerClass;
     createCircle();
-    createSprite();
+    createPlayer();
     setAlignment(Pos.CENTER);
     setSpacing(20);
     getChildren().add(circle);
@@ -49,18 +49,18 @@ public class SpritePicker extends VBox {
   /**
    * Constructs the ImageView object for sprite.
    */
-  private void createSprite() {
-    spriteImg = new ImageView(sprite.getURL());
+  private void createPlayer() {
+    spriteImg = new ImageView(playerClass.getUrl());
     spriteImg.setPreserveRatio(true);
     spriteImg.setFitHeight(60);
   }
 
   /**
-   * Returns the sprite object.
-   * @return sprite
+   * Returns the PlayerClass object.
+   * @return playerClass
    */
-  public Sprite getSprite() {
-    return sprite;
+  public PlayerClass getPlayer() {
+    return playerClass;
   }
 
   /**

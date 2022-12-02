@@ -1,14 +1,15 @@
 package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core;
 
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.common.EnemyClass;
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.components.Pause;
-import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core.player.Player;
-import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums.ChadStage;
-import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums.Level;
-import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums.PlayerClass;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core.entities.Enemy;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core.entities.Player;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.common.ChadStage;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.common.Level;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.common.PlayerClass;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -31,6 +32,7 @@ public class Game {
   private static final int ROTATE_360 = 360;
   private static final int ROTATE_180 = 180;
   private static final int ROTATE_90 = 90;
+  private Enemy enemy;
   private Player player;
   private PlayerClass playerClass;
   private ChadStage chosenStage;
@@ -40,6 +42,7 @@ public class Game {
   private StackPane pausePane;
   private Level chosenLevel;
   private AnimationTimer timer;
+  private long later;
   private double moveUnits;
   private boolean isUpKeyPressed;
   private boolean isDownKeyPressed;
@@ -68,6 +71,7 @@ public class Game {
 
     initialiseStage();
     createPlayer();
+    createEnemy();
     createKeyListener();
     createTick();
     gameStage.show();
@@ -80,6 +84,11 @@ public class Game {
     player = new Player(playerClass);
     player.resetPosition(GAME_HEIGHT);
     gamePane.getChildren().add(player.toImage());
+  }
+
+  private void createEnemy() {
+    enemy = new Enemy(EnemyClass.SANS);
+    gamePane.getChildren().add(enemy.create());
   }
 
   /**
@@ -142,6 +151,27 @@ public class Game {
     } else if (pausedPanePoppedUp && !paused) {
       pausedPanePoppedUp = false;
       gamePane.getChildren().remove(pausePane);
+    }
+  }
+
+  private void moveEnemy(final long now) {
+    final long wait = 300000000;
+    if (later == 0 || now >= later) {
+      later = now + wait;
+    } else {
+      return;
+    }
+
+    double enemyMoveUnits;
+    enemyMoveUnits = enemy.move();
+    if (
+        enemyMoveUnits <= -GAME_WIDTH / 2.0 ||
+        enemyMoveUnits >= GAME_WIDTH / 2.0
+    ) {
+      return;
+    } else {
+      enemy.create().setTranslateX(enemyMoveUnits);
+
     }
   }
 
@@ -209,6 +239,7 @@ public class Game {
       public void handle(final long now) {
         if (!paused) {
           movePlayer();
+          moveEnemy(now);
           checkWinStatus();
         }
         pause();

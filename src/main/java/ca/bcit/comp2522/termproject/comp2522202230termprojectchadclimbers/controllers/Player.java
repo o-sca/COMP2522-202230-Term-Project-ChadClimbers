@@ -1,8 +1,7 @@
 package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.controllers;
 
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.components.SpritePicker;
-import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums.PlayerClass;
-import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.enums.Sprite;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.common.PlayerClass;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -45,7 +44,7 @@ public class Player extends Controller {
   }
 
   private void displayDefault() {
-    final SpritePicker defaultSpritePicker = new SpritePicker(Sprite.valueOf(getChosenPlayer().name()));
+    final SpritePicker defaultSpritePicker = new SpritePicker(getChosenPlayer());
     defaultSpritePicker.setIsChosen(true);
     displayPlayerStats(defaultSpritePicker);
   }
@@ -61,18 +60,18 @@ public class Player extends Controller {
     HBox box = new HBox();
     box.setSpacing(boxSpace);
 
-    for (Sprite sprite : Sprite.values()) {
-      SpritePicker spriteToPick = new SpritePicker(sprite);
-      sprites.add(spriteToPick);
-      box.getChildren().add(spriteToPick);
+    for (PlayerClass player : PlayerClass.values()) {
+      SpritePicker playerToPick = new SpritePicker(player);
+      sprites.add(playerToPick);
+      box.getChildren().add(playerToPick);
 
-      spriteToPick.setOnMouseClicked(mouseEvent -> {
+      playerToPick.setOnMouseClicked(mouseEvent -> {
         for (SpritePicker spritePicker : sprites) {
           spritePicker.setIsChosen(false);
         }
 
-        spriteToPick.setIsChosen(true);
-        displayPlayerStats(spriteToPick);
+        playerToPick.setIsChosen(true);
+        displayPlayerStats(playerToPick);
       });
     }
     return box;
@@ -83,12 +82,12 @@ public class Player extends Controller {
    * @param spriteToPick SpritePicker
    */
   private void displayPlayerStats(final SpritePicker spriteToPick) {
-    final PlayerClass playerClass = PlayerClass.valueOf(spriteToPick.getSprite().name());
-    playerName.setText(spriteToPick.getSprite().name());
+    final PlayerClass playerClass = PlayerClass.valueOf(spriteToPick.getPlayer().name());
+    playerName.setText(spriteToPick.getPlayer().name());
     playerHP.setText(String.valueOf(playerClass.getStats().maxHP));
     playerDefense.setText(String.valueOf(playerClass.getStats().defense));
     playerStrength.setText(String.valueOf(playerClass.getStats().strength));
     playerSpeed.setText(String.valueOf(playerClass.getStats().speed));
-    setChosenPlayer(PlayerClass.valueOf(spriteToPick.getSprite().name()));
+    setChosenPlayer(PlayerClass.valueOf(spriteToPick.getPlayer().name()));
   }
 }

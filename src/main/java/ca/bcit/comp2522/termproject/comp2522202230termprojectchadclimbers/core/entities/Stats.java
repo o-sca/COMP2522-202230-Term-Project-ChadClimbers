@@ -1,4 +1,4 @@
-package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core.player;
+package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core.entities;
 
 /**
  * Represents the Stats Class.
