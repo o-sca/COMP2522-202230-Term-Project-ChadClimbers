@@ -7,6 +7,7 @@ import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core.e
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.common.ChadStage;
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.common.Level;
 import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.common.PlayerClass;
+import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core.entities.Stats;
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -44,6 +45,7 @@ public class Game {
   private Stage gameStage;
   private StackPane pausePane;
   private Level chosenLevel;
+  private Stats playerStats;
   private AnimationTimer timer;
   private long later;
   private boolean isUpKeyPressed;
@@ -85,7 +87,9 @@ public class Game {
   private void createPlayer() {
     player = new Player(playerClass);
     player.resetPosition(GAME_HEIGHT);
-    gamePane.getChildren().add(player.toImage());
+    playerStats = playerClass.getStats();
+    gamePane.getChildren().add(player.create());
+
   }
 
   /**
@@ -106,7 +110,7 @@ public class Game {
    */
   private Enemy createEnemy() {
     Random rng = new Random();
-    Enemy enemy = new Enemy(EnemyClass.SANS);
+    Enemy enemy = new Enemy(EnemyClass.values()[chosenLevel.getSelectedLevel()]);
     enemy.create().setTranslateY(rng.nextDouble(-GAME_HEIGHT/2.0 + enemy.height, GAME_HEIGHT/2.0 - enemy.height*2.5));
     enemy.create().setTranslateX(rng.nextDouble(-GAME_WIDTH/2.0, GAME_WIDTH/2.0));
     gamePane.getChildren().add(enemy.create());
@@ -181,8 +185,10 @@ public class Game {
    */
   private void collisionCheck() {
     for (Enemy enemy : enemies) {
-      if (enemy.create().getBoundsInParent().intersects(player.toImage().getBoundsInParent())) {
-        player.toImage().setTranslateY(GAME_HEIGHT/2.0);
+      if (enemy.create().getBoundsInParent().intersects(player.create().getBoundsInParent())) {
+        player.create().setTranslateY(GAME_HEIGHT/2.0);
+        playerStats.maxHP = playerStats.maxHP - enemy.stats.strength;
+        System.out.println(playerStats.maxHP);
         return;
       }
     }
@@ -228,32 +234,32 @@ public class Game {
         win = true;
         return;
       }
-      player.toImage().setTranslateY(moveUnits);
-      player.toImage().setRotate(ROTATE_180);
+      player.create().setTranslateY(moveUnits);
+      player.create().setRotate(ROTATE_180);
     }
     if (isDownKeyPressed) {
       isDownKeyPressed = false;
       moveUnits = player.moveDown();
       /* When player Y reaches bottom of screen. */
       if (moveUnits >= GAME_HEIGHT / 2.0) return;
-      player.toImage().setTranslateY(moveUnits);
-      player.toImage().setRotate(ROTATE_360);
+      player.create().setTranslateY(moveUnits);
+      player.create().setRotate(ROTATE_360);
     }
     if (isLeftKeyPressed) {
       isLeftKeyPressed = false;
       moveUnits = player.moveLeft();
       /* When playerX reaches left side of the screen. */
       if (moveUnits <= -GAME_WIDTH / 2.0) return;
-      player.toImage().setTranslateX(moveUnits);
-      player.toImage().setRotate(ROTATE_90);
+      player.create().setTranslateX(moveUnits);
+      player.create().setRotate(ROTATE_90);
     }
     if (isRightKeyPressed) {
       isRightKeyPressed = false;
       moveUnits = player.moveRight();
       /* When playerX reaches right side of screen. */
       if (moveUnits >= GAME_WIDTH / 2.0) return;
-      player.toImage().setTranslateX(moveUnits);
-      player.toImage().setRotate(-ROTATE_90);
+      player.create().setTranslateX(moveUnits);
+      player.create().setRotate(-ROTATE_90);
     }
   }
 
@@ -262,10 +268,16 @@ public class Game {
    * will stop, player position resets, and
    * gameStage will close.
    */
-  private void checkWinStatus() {
+  private void checkStatus() {
     if (win) {
       timer.stop();
       System.out.println("Win");
+      gameStage.close();
+    }
+
+    if (playerStats.maxHP <= 0) {
+      timer.stop();
+      System.out.println("You Died");
       gameStage.close();
     }
   }
@@ -281,7 +293,7 @@ public class Game {
           movePlayer();
           moveEnemy(now);
           collisionCheck();
-          checkWinStatus();
+          checkStatus();
         }
         pause();
         createPausePopup();
