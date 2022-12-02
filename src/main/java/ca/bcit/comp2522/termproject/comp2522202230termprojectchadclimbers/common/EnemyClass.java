@@ -10,31 +10,40 @@ import ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core.e
  * @version 2022
  */
 public enum EnemyClass implements EntityEnumInterface {
-  SANS(
+  GHOST(
       new Builder()
-          .setUrl(ChadClimbers.class.getResource("sprites/sans.png").toString())
-          .setDefense(5)
+          .setUrl(ChadClimbers.class.getResource("sprites/ghost.png").toString())
+          .setDefense(4)
           .setStrength(10)
-          .setMaxHP(10)
-          .setSpeed(40)
-          .build()
-  ),
-  GENGAR(
-      new Builder()
-          .setUrl(ChadClimbers.class.getResource("sprites/gengar.png").toString())
-          .setDefense(3)
-          .setStrength(3)
-          .setMaxHP(5)
-          .setSpeed(30)
+          .setMaxHP(1)
+          .setSpeed(10)
           .build()
   ),
   ALIEN(
       new Builder()
           .setUrl(ChadClimbers.class.getResource("sprites/alien.png").toString())
           .setDefense(4)
-          .setStrength(6)
+          .setStrength(20)
           .setMaxHP(1)
           .setSpeed(20)
+          .build()
+  ),
+  GENGAR(
+      new Builder()
+          .setUrl(ChadClimbers.class.getResource("sprites/gengar.png").toString())
+          .setDefense(3)
+          .setStrength(30)
+          .setMaxHP(5)
+          .setSpeed(30)
+          .build()
+  ),
+  SANS(
+      new Builder()
+          .setUrl(ChadClimbers.class.getResource("sprites/sans.png").toString())
+          .setDefense(5)
+          .setStrength(50)
+          .setMaxHP(10)
+          .setSpeed(40)
           .build()
   );
 
