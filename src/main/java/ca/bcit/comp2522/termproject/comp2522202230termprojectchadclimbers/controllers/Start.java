@@ -12,7 +12,6 @@ import java.io.IOException;
 
 /**
  * Start Controller.
- *
  * @author Oscar
  * @version 2022
  */
@@ -44,7 +43,6 @@ public class Start extends Controller {
   /**
    * Loads FXML file and displays a SubScene-like pane.
    * TO DO: Maybe move this method to Controller class.
-   *
    * @param fileName FXML File Name
    * @throws IOException if FXML file is not found.
    */
@@ -66,7 +64,6 @@ public class Start extends Controller {
 
   /**
    * Invokes setPane method with the Player FXML file.
-   *
    * @throws IOException if FXML file is not found.
    */
   public void playerButton() throws IOException {
@@ -75,7 +72,6 @@ public class Start extends Controller {
 
   /**
    * Invokes setPane method with the SelectStage FXML file.
-   *
    * @throws IOException if FXML file is not found.
    */
   public void stageButton() throws IOException {
@@ -84,7 +80,6 @@ public class Start extends Controller {
 
   /**
    * Invokes setPane method with the Level FXML file.
-   *
    * @throws IOException if FXML file is not found.
    */
   public void levelButton() throws IOException {
