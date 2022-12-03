@@ -31,8 +31,8 @@ import java.util.Random;
  * @version 2022
  */
 public class Game {
- private static final int GAME_WIDTH = 600;
-  private static final int GAME_HEIGHT = 400;
+ private static final int GAME_WIDTH = 800;
+  private static final int GAME_HEIGHT = 600;
   private static final int ROTATE_360 = 360;
   private static final int ROTATE_180 = 180;
   private static final int ROTATE_90 = 90;
