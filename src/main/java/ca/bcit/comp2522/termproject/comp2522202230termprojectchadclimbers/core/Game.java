@@ -187,8 +187,8 @@ public class Game {
     for (Enemy enemy : enemies) {
       if (enemy.create().getBoundsInParent().intersects(player.create().getBoundsInParent())) {
         player.create().setTranslateY(GAME_HEIGHT/2.0);
-        playerStats.maxHP = playerStats.maxHP - enemy.stats.strength;
-        System.out.println(playerStats.maxHP);
+        playerStats.currentHP = playerStats.currentHP - enemy.stats.strength;
+        System.out.println(playerStats.currentHP);
         return;
       }
     }
@@ -275,8 +275,9 @@ public class Game {
       gameStage.close();
     }
 
-    if (playerStats.maxHP <= 0) {
+    if (playerStats.currentHP <= 0) {
       timer.stop();
+      playerStats.currentHP = playerClass.getStats().maxHP;
       System.out.println("You Died");
       gameStage.close();
     }

@@ -7,11 +7,22 @@ package ca.bcit.comp2522.termproject.comp2522202230termprojectchadclimbers.core.
  * @version 2022
  */
 public class Builder {
+  private int currentHP;
   private int maxHP;
   private int strength;
   private int defense;
   private int speed;
   private String url;
+
+  /**
+   * Sets the currentHP.
+   * @param currentHP int
+   * @return Builder
+   */
+  public Builder setCurrentHP(final int currentHP) {
+    this.currentHP = currentHP;
+    return this;
+  }
 
   /**
    * Sets the maxHP.
@@ -69,6 +80,6 @@ public class Builder {
    * @return Stats
    */
   public Stats build() {
-    return new Stats(maxHP, strength, defense, speed, url);
+    return new Stats(currentHP, maxHP, strength, defense, speed, url);
   }
 }
